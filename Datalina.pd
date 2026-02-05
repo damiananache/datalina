@@ -1,0 +1,505 @@
+#N canvas 982 92 840 919 12;
+#X obj 21 254 cnv 15 640 120 empty empty empty 20 12 0 14 #e0e0e0 #404040
+0;
+#X obj 22 386 cnv 15 638 160 empty empty empty 20 12 0 14 #e0e0e0 #404040
+0;
+#N canvas 400 130 592 425 import-image 0;
+#X obj 121 181 pix_image;
+#X obj 121 326 pix_texture;
+#X obj 175 110 openpanel;
+#X msg 175 139 open \$1;
+#X obj 175 81 inlet;
+#X obj 390 290 s image;
+#X obj 121 355 rectangle 5 4;
+#X obj 121 9 gemhead 10;
+#X obj 121 252 pix_invert;
+#X obj 390 220 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 0 1;
+#X obj 390 15 inlet;
+#X connect 0 0 8 0;
+#X connect 1 0 6 0;
+#X connect 2 0 3 0;
+#X connect 3 0 0 0;
+#X connect 4 0 2 0;
+#X connect 7 0 0 0;
+#X connect 8 0 1 0;
+#X connect 8 0 5 0;
+#X connect 9 0 8 0;
+#X connect 10 0 9 0;
+#X restore 50 298 pd import-image;
+#X obj 50 272 bng 16 250 50 0 empty empty 1-import_image 16 7 0 10
+#e6fc00 #000000 #000000;
+#X obj 350 569 catch~ audio;
+#X obj 350 606 output~;
+#X floatatom 367 302 10 0 0 0 - - -, f 10;
+#X obj 367 283 hsl 250 15 510 12500 1 1 GUIrangeMax empty empty -2
+-8 0 10 #fcfcfc #000000 #000000 5251 1;
+#X floatatom 367 349 10 0 0 0 - - -, f 10;
+#X obj 367 330 hsl 250 15 120 500 1 1 GUIrangeMin empty empty -2 -8
+0 10 #fcfcfc #000000 #000000 10160 1;
+#N canvas 40 334 837 720 ctrlReproduccion 0;
+#X obj 235 40 inlet;
+#X obj 426 40 inlet;
+#X obj 235 77 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 0 1;
+#X obj 108 306 line;
+#X obj 30 92 sel 1;
+#X floatatom 117 359 9 0 0 0 - - -, f 9;
+#X obj 108 334 * 0.001;
+#X obj 196 160 t b b;
+#X msg 344 203 0;
+#X msg 108 120 set 1000 \$1;
+#X msg 108 234 1000 17036.5;
+#X obj 108 96 r duration;
+#X obj 108 419 s xpos;
+#X obj 550 40 inlet;
+#X obj 426 174 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 #fcfcfc
+#000000 #000000 0 1;
+#X obj 426 128 random 100;
+#X obj 426 151 * 0.01;
+#X obj 426 104 metro 500;
+#X obj 426 86 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 0 1;
+#X obj 62 300 f;
+#X obj 62 272 b;
+#X obj 353 175 loadbang;
+#X obj 426 399 line;
+#X obj 344 40 inlet;
+#X obj 196 354 sel 1;
+#X obj 196 188 spigot;
+#X obj 426 217 t f b;
+#X obj 476 208 r interp;
+#X obj 476 237 f;
+#X obj 246 380 spigot;
+#X obj 285 40 inlet;
+#X obj 285 77 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 0 1;
+#X obj 235 108 sel 1;
+#X msg 235 137 1;
+#X connect 0 0 2 0;
+#X connect 1 0 18 0;
+#X connect 2 0 4 0;
+#X connect 2 0 32 0;
+#X connect 3 0 6 0;
+#X connect 3 0 19 1;
+#X connect 4 0 10 0;
+#X connect 4 1 20 0;
+#X connect 6 0 5 0;
+#X connect 6 0 12 0;
+#X connect 6 0 24 0;
+#X connect 7 0 25 0;
+#X connect 7 1 8 0;
+#X connect 8 0 3 0;
+#X connect 9 0 10 0;
+#X connect 10 0 3 0;
+#X connect 11 0 9 0;
+#X connect 13 0 14 0;
+#X connect 14 0 26 0;
+#X connect 15 0 16 0;
+#X connect 16 0 14 0;
+#X connect 17 0 15 0;
+#X connect 18 0 17 0;
+#X connect 19 0 3 0;
+#X connect 20 0 19 0;
+#X connect 21 0 8 0;
+#X connect 22 0 12 0;
+#X connect 23 0 8 0;
+#X connect 24 0 29 0;
+#X connect 25 0 10 0;
+#X connect 26 0 22 0;
+#X connect 26 1 28 0;
+#X connect 27 0 28 0;
+#X connect 28 0 22 1;
+#X connect 29 0 7 0;
+#X connect 30 0 31 0;
+#X connect 31 0 29 1;
+#X connect 32 0 33 0;
+#X connect 33 0 25 1;
+#X restore 181 480 pd ctrlReproduccion;
+#X obj 320 461 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 #fcfcfc
+#000000 #000000 0 1;
+#X obj 80 460 tgl 15 0 empty empty empty 17 7 0 10 #00ff3b #000000
+#000000 0 1;
+#X obj 281 461 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 0 1;
+#X text 357 435 Manual;
+#X obj 245 461 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X text 232 436 Reset;
+#X text 277 436 RND;
+#N canvas 128 50 565 667 GUI 0;
+#X obj 218 283 r GUIrangeMax;
+#X obj 228 483 r GUIrangeMin;
+#X obj 250 438 s rangeMax;
+#X obj 260 640 s rangeMin;
+#X obj 218 311 f;
+#X obj 228 512 f;
+#X obj 38 32 r GUIupdate;
+#X obj 38 61 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000;
+#X obj 219 120 f;
+#X floatatom 258 225 5 0 0 0 - - -, f 5;
+#X obj 219 61 r GUIduration;
+#X obj 251 248 s duration;
+#X obj 219 87 * 1000;
+#X obj 380 180 gemwin;
+#X msg 380 150 0 \, destroy;
+#X obj 420 90 loadbang;
+#X msg 410 120 reset \, dimen 320 240 \, create \, 1;
+#X obj 251 201 line;
+#X obj 265 146 r interp;
+#X obj 265 176 f;
+#X obj 219 146 t b f;
+#X floatatom 257 414 5 0 0 0 - - -, f 5;
+#X obj 250 390 line;
+#X obj 264 335 r interp;
+#X obj 264 365 f;
+#X obj 218 335 t b f;
+#X floatatom 267 615 5 0 0 0 - - -, f 5;
+#X obj 260 591 line;
+#X obj 274 536 r interp;
+#X obj 274 566 f;
+#X obj 228 536 t b f;
+#X obj 380 21 inlet;
+#X obj 380 50 sel 0 1, f 9;
+#X connect 0 0 4 0;
+#X connect 1 0 5 0;
+#X connect 4 0 25 0;
+#X connect 5 0 30 0;
+#X connect 6 0 7 0;
+#X connect 7 0 4 0;
+#X connect 7 0 5 0;
+#X connect 7 0 8 0;
+#X connect 8 0 20 0;
+#X connect 10 0 12 0;
+#X connect 12 0 8 0;
+#X connect 14 0 13 0;
+#X connect 15 0 16 0;
+#X connect 16 0 13 0;
+#X connect 17 0 11 0;
+#X connect 17 0 9 0;
+#X connect 18 0 19 0;
+#X connect 19 0 17 1;
+#X connect 20 0 19 0;
+#X connect 20 1 17 0;
+#X connect 22 0 21 0;
+#X connect 22 0 2 0;
+#X connect 23 0 24 0;
+#X connect 24 0 22 1;
+#X connect 25 0 24 0;
+#X connect 25 1 22 0;
+#X connect 27 0 26 0;
+#X connect 27 0 3 0;
+#X connect 28 0 29 0;
+#X connect 29 0 27 1;
+#X connect 30 0 29 0;
+#X connect 30 1 27 0;
+#X connect 31 0 32 0;
+#X connect 32 0 14 0;
+#X connect 32 1 16 0;
+#X restore 230 640 pd GUI;
+#X obj 35 484 hsl 128 15 0.1 300 1 1 GUIduration empty empty -2 -8
+0 10 #fcfcfc #000000 #000000 8150 1;
+#X floatatom 35 504 5 0 0 0 - - -, f 5;
+#X text 75 504 Duration(sec);
+#N canvas 300 498 676 528 scanPoints 0;
+#X obj 98 167 until;
+#X obj 98 388 s pd-subpatch;
+#X obj 98 142 t f f b;
+#X obj 98 82 bng 15 250 50 0 empty empty 2-create_scan_points 17 7
+0 10 #fc0400 #000000 #000000;
+#X floatatom 98 247 5 0 0 0 - - -, f 5;
+#X obj 98 220 f;
+#X obj 131 220 + 1;
+#X text 130 110 nro de scan points;
+#X msg 144 190 0;
+#X obj 98 338 pack f f;
+#X obj 200 318 expr ($f1 * 22 ) +10;
+#X obj 98 276 expr ($f1/$f2) \; $f1;
+#X text 203 389 creacion de los osciladores;
+#X obj 98 26 loadbang;
+#X obj 98 53 t b b;
+#X msg 98 362 obj 20 \$2 abstracciones/linear-scan \$1;
+#X msg 550 90 clear;
+#X msg 97 110 120;
+#X connect 0 0 5 0;
+#X connect 2 0 0 0;
+#X connect 2 1 11 1;
+#X connect 2 2 8 0;
+#X connect 3 0 17 0;
+#X connect 4 0 11 0;
+#X connect 5 0 6 0;
+#X connect 5 0 4 0;
+#X connect 6 0 5 1;
+#X connect 8 0 5 1;
+#X connect 9 0 15 0;
+#X connect 10 0 9 1;
+#X connect 11 0 9 0;
+#X connect 11 1 10 0;
+#X connect 13 0 14 0;
+#X connect 14 0 3 0;
+#X connect 14 1 16 0;
+#X connect 15 0 1 0;
+#X connect 16 0 1 0;
+#X connect 17 0 2 0;
+#X restore 230 568 pd scanPoints;
+#X text 49 324 tamaño sugerido: 320 x 240;
+#X text 49 348 negro = silencio / blanco = activo;
+#X text 241 394 Lectura Eje Horizontal;
+#X obj 554 497 s interp;
+#X msg 543 458 200;
+#X obj 152 274 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 0 1;
+#X text 170 272 invert;
+#X msg 576 458 750;
+#X msg 609 457 2000;
+#X msg 512 458 110;
+#X obj 543 434 loadbang;
+#X msg 479 459 2;
+#X text 157 143 *******************************************************
+;
+#X text 157 11 *******************************************************
+;
+#N canvas 390 232 450 323 subpatch 0;
+#X obj 20 10 abstracciones/linear-scan 0;
+#X obj 20 32 abstracciones/linear-scan 0.00833333;
+#X obj 20 54 abstracciones/linear-scan 0.0166667;
+#X obj 20 76 abstracciones/linear-scan 0.025;
+#X obj 20 98 abstracciones/linear-scan 0.0333333;
+#X obj 20 120 abstracciones/linear-scan 0.0416667;
+#X obj 20 142 abstracciones/linear-scan 0.05;
+#X obj 20 164 abstracciones/linear-scan 0.0583333;
+#X obj 20 186 abstracciones/linear-scan 0.0666667;
+#X obj 20 208 abstracciones/linear-scan 0.075;
+#X obj 20 230 abstracciones/linear-scan 0.0833333;
+#X obj 20 252 abstracciones/linear-scan 0.0916667;
+#X obj 20 274 abstracciones/linear-scan 0.1;
+#X obj 20 296 abstracciones/linear-scan 0.108333;
+#X obj 20 318 abstracciones/linear-scan 0.116667;
+#X obj 20 340 abstracciones/linear-scan 0.125;
+#X obj 20 362 abstracciones/linear-scan 0.133333;
+#X obj 20 384 abstracciones/linear-scan 0.141667;
+#X obj 20 406 abstracciones/linear-scan 0.15;
+#X obj 20 428 abstracciones/linear-scan 0.158333;
+#X obj 20 450 abstracciones/linear-scan 0.166667;
+#X obj 20 472 abstracciones/linear-scan 0.175;
+#X obj 20 494 abstracciones/linear-scan 0.183333;
+#X obj 20 516 abstracciones/linear-scan 0.191667;
+#X obj 20 538 abstracciones/linear-scan 0.2;
+#X obj 20 560 abstracciones/linear-scan 0.208333;
+#X obj 20 582 abstracciones/linear-scan 0.216667;
+#X obj 20 604 abstracciones/linear-scan 0.225;
+#X obj 20 626 abstracciones/linear-scan 0.233333;
+#X obj 20 648 abstracciones/linear-scan 0.241667;
+#X obj 20 670 abstracciones/linear-scan 0.25;
+#X obj 20 692 abstracciones/linear-scan 0.258333;
+#X obj 20 714 abstracciones/linear-scan 0.266667;
+#X obj 20 736 abstracciones/linear-scan 0.275;
+#X obj 20 758 abstracciones/linear-scan 0.283333;
+#X obj 20 780 abstracciones/linear-scan 0.291667;
+#X obj 20 802 abstracciones/linear-scan 0.3;
+#X obj 20 824 abstracciones/linear-scan 0.308333;
+#X obj 20 846 abstracciones/linear-scan 0.316667;
+#X obj 20 868 abstracciones/linear-scan 0.325;
+#X obj 20 890 abstracciones/linear-scan 0.333333;
+#X obj 20 912 abstracciones/linear-scan 0.341667;
+#X obj 20 934 abstracciones/linear-scan 0.35;
+#X obj 20 956 abstracciones/linear-scan 0.358333;
+#X obj 20 978 abstracciones/linear-scan 0.366667;
+#X obj 20 1000 abstracciones/linear-scan 0.375;
+#X obj 20 1022 abstracciones/linear-scan 0.383333;
+#X obj 20 1044 abstracciones/linear-scan 0.391667;
+#X obj 20 1066 abstracciones/linear-scan 0.4;
+#X obj 20 1088 abstracciones/linear-scan 0.408333;
+#X obj 20 1110 abstracciones/linear-scan 0.416667;
+#X obj 20 1132 abstracciones/linear-scan 0.425;
+#X obj 20 1154 abstracciones/linear-scan 0.433333;
+#X obj 20 1176 abstracciones/linear-scan 0.441667;
+#X obj 20 1198 abstracciones/linear-scan 0.45;
+#X obj 20 1220 abstracciones/linear-scan 0.458333;
+#X obj 20 1242 abstracciones/linear-scan 0.466667;
+#X obj 20 1264 abstracciones/linear-scan 0.475;
+#X obj 20 1286 abstracciones/linear-scan 0.483333;
+#X obj 20 1308 abstracciones/linear-scan 0.491667;
+#X obj 20 1330 abstracciones/linear-scan 0.5;
+#X obj 20 1352 abstracciones/linear-scan 0.508333;
+#X obj 20 1374 abstracciones/linear-scan 0.516667;
+#X obj 20 1396 abstracciones/linear-scan 0.525;
+#X obj 20 1418 abstracciones/linear-scan 0.533333;
+#X obj 20 1440 abstracciones/linear-scan 0.541667;
+#X obj 20 1462 abstracciones/linear-scan 0.55;
+#X obj 20 1484 abstracciones/linear-scan 0.558333;
+#X obj 20 1506 abstracciones/linear-scan 0.566667;
+#X obj 20 1528 abstracciones/linear-scan 0.575;
+#X obj 20 1550 abstracciones/linear-scan 0.583333;
+#X obj 20 1572 abstracciones/linear-scan 0.591667;
+#X obj 20 1594 abstracciones/linear-scan 0.6;
+#X obj 20 1616 abstracciones/linear-scan 0.608333;
+#X obj 20 1638 abstracciones/linear-scan 0.616667;
+#X obj 20 1660 abstracciones/linear-scan 0.625;
+#X obj 20 1682 abstracciones/linear-scan 0.633333;
+#X obj 20 1704 abstracciones/linear-scan 0.641667;
+#X obj 20 1726 abstracciones/linear-scan 0.65;
+#X obj 20 1748 abstracciones/linear-scan 0.658333;
+#X obj 20 1770 abstracciones/linear-scan 0.666667;
+#X obj 20 1792 abstracciones/linear-scan 0.675;
+#X obj 20 1814 abstracciones/linear-scan 0.683333;
+#X obj 20 1836 abstracciones/linear-scan 0.691667;
+#X obj 20 1858 abstracciones/linear-scan 0.7;
+#X obj 20 1880 abstracciones/linear-scan 0.708333;
+#X obj 20 1902 abstracciones/linear-scan 0.716667;
+#X obj 20 1924 abstracciones/linear-scan 0.725;
+#X obj 20 1946 abstracciones/linear-scan 0.733333;
+#X obj 20 1968 abstracciones/linear-scan 0.741667;
+#X obj 20 1990 abstracciones/linear-scan 0.75;
+#X obj 20 2012 abstracciones/linear-scan 0.758333;
+#X obj 20 2034 abstracciones/linear-scan 0.766667;
+#X obj 20 2056 abstracciones/linear-scan 0.775;
+#X obj 20 2078 abstracciones/linear-scan 0.783333;
+#X obj 20 2100 abstracciones/linear-scan 0.791667;
+#X obj 20 2122 abstracciones/linear-scan 0.8;
+#X obj 20 2144 abstracciones/linear-scan 0.808333;
+#X obj 20 2166 abstracciones/linear-scan 0.816667;
+#X obj 20 2188 abstracciones/linear-scan 0.825;
+#X obj 20 2210 abstracciones/linear-scan 0.833333;
+#X obj 20 2232 abstracciones/linear-scan 0.841667;
+#X obj 20 2254 abstracciones/linear-scan 0.85;
+#X obj 20 2276 abstracciones/linear-scan 0.858333;
+#X obj 20 2298 abstracciones/linear-scan 0.866667;
+#X obj 20 2320 abstracciones/linear-scan 0.875;
+#X obj 20 2342 abstracciones/linear-scan 0.883333;
+#X obj 20 2364 abstracciones/linear-scan 0.891667;
+#X obj 20 2386 abstracciones/linear-scan 0.9;
+#X obj 20 2408 abstracciones/linear-scan 0.908333;
+#X obj 20 2430 abstracciones/linear-scan 0.916667;
+#X obj 20 2452 abstracciones/linear-scan 0.925;
+#X obj 20 2474 abstracciones/linear-scan 0.933333;
+#X obj 20 2496 abstracciones/linear-scan 0.941667;
+#X obj 20 2518 abstracciones/linear-scan 0.95;
+#X obj 20 2540 abstracciones/linear-scan 0.958333;
+#X obj 20 2562 abstracciones/linear-scan 0.966667;
+#X obj 20 2584 abstracciones/linear-scan 0.975;
+#X obj 20 2606 abstracciones/linear-scan 0.983333;
+#X obj 20 2628 abstracciones/linear-scan 0.991667;
+#X restore 230 593 pd subpatch;
+#X text 157 203 *******************************************************
+;
+#N canvas 653 40 494 608 descripcion_de_funcionamiento 0;
+#X text 13 23 Análisis de información de color en una imagen (input)
+y simultanea generación de señal de audio (output) mediante sintesis
+aditiva (banco de osciladores).;
+#X text 14 92 La imagen (input) es considerada como una grilla de dos
+dimensiones \, siendo el horizontal asignado al tiempo y el vertical
+a la altura del sonido a generar.;
+#X text 14 152 Para el análisis de la imagen \, se evalua cada posicion
+del eje vertical \, o "filas" \, según cada valor del eje horizontal
+\, o "columnas". Una vez definida una posición en el ejer horizontal
+para la lectura de la información \, se evalúa si hay información
+de color en cada una de las posiciones del eje vertical. Esa cantidad
+de puntos de analisis está definida por defecto en 120 filas.;
+#X text 14 274 Cada fila \, tiene asociada un oscilador cosenoidal
+\, de manera que al encontrar información de color se activa el oscilador
+especifico de cada fila.;
+#X text 16 335 El color negro fue definido arbitariamente como "ausencia
+de color" y el color blanco como "presencia". De manera que una imagen
+completamente negra no emitirá ningún sonido y una imagen completamente
+blanca mantendrá activos todos los osciladores constantemente.;
+#X text 16 425 Un imagen de fondo negro con una línea horizontal blanca
+mantendrá activo constantemente un único oscilador.;
+#X text 16 465 Un imagen de fondo negro con una línea vertical blanca
+mantendrá activo los osciladores que se correspondan con esas filas
+específicas durante el "momento" correspondiente al eje horizontal.
+;
+#X text 16 545 El recorrido de la imagen puede ser manual o automatico.
+La lactura automátiza es cíclica \, de izquierda a derecha. De manera
+que luego de recorrer la totalidad de la imagen repite el recorrido
+saltando de la última posición (extremo derecho) a la primera (extremo
+ixquierdo);
+#X restore 237 174 pd descripcion_de_funcionamiento;
+#X text 426 257 Rango de Frecuencias;
+#X text 452 302 Hz Frec Max (limite sup);
+#X text 455 348 Hz Frec Min (limite inf);
+#X text 52 434 Auto Scan;
+#X obj 230 620 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 0 1;
+#X text 314 32 DATALINA;
+#X text 180 60 Una adaptación de "Catalina" (1973 \, Fernando von
+Reichenbach) desarrollada en Pure Data.;
+#N canvas 255 406 684 498 sobreDatalina 0;
+#X text 30 20 Datalina (2026) es un patch creado por Damian Anache.
+;
+#X text 30 170 https://archivofvr.unq.edu.ar/;
+#X text 30 243 https://www.youtube.com/watch?v=tH-FXIpVwxU;
+#X text 30 360 https://ezequielabregu.github.io/code-that-sounds/;
+#X text 30 50 Para este proyecto me inspiré en Catalina \, el conversor
+desarrollado por Fernando von Reichenbach y patentado en 1973 (EE.
+UU.).;
+#X text 30 110 Pueden encontrar información detallada sobre el trabajo
+de Fernando von Reichenbach en el Archivo de Música y Arte Sonoro
+FvR \, radicado en la Universidad Nacional de Quilmes:;
+#X text 30 200 También recomiendo esta entrevista \, donde comento
+el trabajo de Fernando y el proyecto Catalina:;
+#X text 30 280 Para el desarrollo de este patch tomé como base el
+trabajo de Ezequiel Abregú: Code That Sounds: Creative Coding and
+Sonic Thinking with Pure Data (2025). Capítulo 5: Sonification \,
+sección 5.9 Image Scanner. Disponible en:;
+#X restore 290 110 pd sobreDatalina;
+#X obj 205 461 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 0 1;
+#X text 195 436 Loop;
+#N canvas 0 0 450 300 grabacion 0;
+#X obj 89 49 inlet~;
+#X obj 170 270 writesf~ 1;
+#X msg 450 214 stop;
+#X obj 170 104 t b b, f 9;
+#X obj 170 76 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000;
+#X msg 229 130 open grabacion0.wav;
+#X msg 239 160 open grabacion1.wav \, start;
+#X msg 170 130 start;
+#X obj 170 50 inlet;
+#X obj 450 66 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000;
+#X obj 450 40 inlet;
+#X obj 89 82 *~ 0.9;
+#X connect 0 0 11 0;
+#X connect 2 0 1 0;
+#X connect 3 0 7 0;
+#X connect 3 1 5 0;
+#X connect 4 0 3 0;
+#X connect 5 0 1 0;
+#X connect 6 0 1 0;
+#X connect 7 0 1 0;
+#X connect 8 0 4 0;
+#X connect 9 0 2 0;
+#X connect 10 0 9 0;
+#X connect 11 0 1 0;
+#X restore 460 600 pd grabacion;
+#X text 494 550 REC;
+#X obj 500 575 bng 15 250 50 0 empty empty empty 17 7 0 10 #ff0000
+#000000 #000000;
+#X obj 541 574 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X text 531 549 STOP;
+#X connect 3 0 2 0;
+#X connect 4 0 5 0;
+#X connect 4 0 5 1;
+#X connect 4 0 50 0;
+#X connect 7 0 6 0;
+#X connect 9 0 8 0;
+#X connect 11 0 10 4;
+#X connect 12 0 10 0;
+#X connect 13 0 10 3;
+#X connect 15 0 10 2;
+#X connect 19 0 20 0;
+#X connect 27 0 26 0;
+#X connect 28 0 2 1;
+#X connect 30 0 26 0;
+#X connect 31 0 26 0;
+#X connect 32 0 26 0;
+#X connect 33 0 27 0;
+#X connect 34 0 26 0;
+#X connect 44 0 18 0;
+#X connect 48 0 10 1;
+#X connect 52 0 50 1;
+#X connect 53 0 50 2;
