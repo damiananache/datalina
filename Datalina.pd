@@ -1,4 +1,4 @@
-#N canvas 855 82 840 919 12;
+#N canvas 889 82 692 919 12;
 #X obj 21 254 cnv 15 640 120 empty empty empty 20 12 0 14 #e0e0e0 #404040
 0;
 #X obj 22 386 cnv 15 638 160 empty empty empty 20 12 0 14 #e0e0e0 #404040
@@ -26,10 +26,10 @@
 #X obj 240 656 output~;
 #X floatatom 367 302 10 0 0 0 - - -, f 10;
 #X obj 367 283 hsl 250 15 510 12500 1 1 GUIrangeMax empty empty -2
--8 0 10 #fcfcfc #000000 #000000 16051 1;
+-8 0 10 #fcfcfc #000000 #000000 15400 1;
 #X floatatom 367 349 10 0 0 0 - - -, f 10;
 #X obj 367 330 hsl 250 15 120 500 1 1 GUIrangeMin empty empty -2 -8
-0 10 #fcfcfc #000000 #000000 11050 1;
+0 10 #fcfcfc #000000 #000000 0 1;
 #N canvas 110 150 1117 804 ctrlReproduccion 0;
 #X obj 235 40 inlet;
 #X obj 569 40 inlet;
@@ -39,7 +39,7 @@
 #X obj 184 200 t b b;
 #X msg 344 286 0;
 #X msg 108 140 set 1000 \$1;
-#X msg 108 234 1000 2490.72;
+#X msg 108 234 1000 6829.47;
 #X obj 108 116 r duration;
 #X obj 108 419 s xpos;
 #X obj 693 40 inlet;
@@ -152,15 +152,17 @@
 #X obj 760 500 r GUIinterp;
 #X obj 750 529 f;
 #X obj 750 558 s interp;
-#X obj 462 649 f;
+#X obj 512 649 f;
 #X obj 669 488 t b b b;
-#X obj 462 690 s autoscan;
-#X obj 500 640 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#X obj 512 690 s autoscan;
+#X obj 550 640 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
 #000000 0 1;
-#X obj 462 570 t b b;
-#X msg 602 600 0;
-#X obj 480 610 r GUIautoscan;
-#X obj 460 520 del 60;
+#X obj 512 570 t b b;
+#X msg 652 600 0;
+#X obj 530 610 r GUIautoscan;
+#X obj 510 520 del 60;
+#X obj 870 510 s GUI-offset;
+#X msg 870 480 1;
 #X connect 0 0 4 0;
 #X connect 1 0 5 0;
 #X connect 4 0 24 0;
@@ -202,6 +204,7 @@
 #X connect 36 0 35 0;
 #X connect 37 1 7 0;
 #X connect 38 0 43 0;
+#X connect 38 0 51 0;
 #X connect 39 0 40 0;
 #X connect 40 0 41 0;
 #X connect 42 0 44 0;
@@ -215,95 +218,130 @@
 #X connect 48 0 42 1;
 #X connect 48 0 45 0;
 #X connect 49 0 46 0;
+#X connect 51 0 50 0;
 #X restore 30 680 pd GUI;
 #X obj 35 484 hsl 128 15 0.1 300 1 1 GUIduration empty empty -2 -8
-0 10 #fcfcfc #000000 #000000 5100 1;
+0 10 #fcfcfc #000000 #000000 6700 1;
 #X floatatom 35 504 5 0 0 0 - - -, f 5;
 #X text 75 504 Duration(sec);
-#N canvas 761 249 883 692 scanPoints 0;
+#N canvas 467 239 883 767 scanPoints 0;
 #X obj 118 217 until;
-#X obj 118 498 s pd-subpatch;
+#X obj 118 538 s pd-subpatch;
 #X floatatom 118 297 5 0 0 0 - - -, f 5;
 #X obj 118 270 f;
 #X obj 151 270 + 1;
 #X text 235 111 nro de scan points;
-#X obj 118 448 pack f f;
-#X obj 220 428 expr ($f1 * 22 ) +10;
-#X obj 118 326 expr ($f1/$f2) \; $f1;
-#X text 223 499 creacion de los osciladores;
+#X obj 210 418 expr ($f1 * 22 ) +10;
+#X text 223 539 creacion de los osciladores;
 #X obj 198 54 loadbang;
 #X obj 198 81 t b b;
-#X msg 118 472 obj 20 \$2 abstracciones/linear-scan \$1;
-#X msg 450 476 clear;
-#X msg 164 240 1;
-#X obj 98 570 s GUI-reset;
-#X obj 98 550 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#X msg 450 516 clear;
+#X obj 98 610 s GUI-reset;
+#X obj 98 590 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
 #000000;
 #X obj 98 182 t b f f b;
 #X obj 98 61 inlet;
 #X obj 98 130 t f b;
 #X msg 198 111 60;
-#X obj 98 524 del 1;
+#X obj 98 564 del 1;
 #X obj 470 290 t b f;
 #X msg 470 319 1;
 #X obj 470 348 /;
 #X obj 470 377 *;
 #X obj 620 300 t b f;
 #X obj 98 90 f;
-#X obj 590 170 ==;
-#X obj 620 230 f;
-#X obj 590 110 t f f f;
-#X obj 590 199 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#X obj 650 170 ==;
+#X obj 680 230 f;
+#X obj 650 110 t f f f;
+#X obj 650 199 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
 #000000 #000000;
-#X obj 620 260 change;
-#X obj 590 140 pipe 500;
-#X obj 118 400 +;
+#X obj 720 260 change;
+#X obj 650 140 pipe 500;
+#X obj 460 400 +;
 #X obj 590 60 inlet;
 #X text 640 60 off set;
-#X text 680 180 filtro de cambios;
+#X text 740 630 filtro de cambios;
+#X obj 220 595 s linear-scan-init;
+#X msg 118 512 obj 20 \$2 abstracciones/linear-scan \$1;
+#X msg 164 240 0;
+#X floatatom 30 60 5 0 0 0 - - -, f 5;
+#X obj 780 350 vsl 15 30 0.9 0 0 0 empty empty empty 0 -9 0 10 #fcfcfc
+#000000 #000000 0 1;
+#X obj 630 459 print;
+#X floatatom 730 350 5 0 0 0 - - -, f 5;
+#X obj 130 670 expr $f1/($f2-1) \; $f1;
+#X obj 630 430 expr;
+#X obj 700 550 t b f;
+#X obj 570 740 f;
+#X obj 670 650 f;
+#X obj 670 620 del 1000;
+#X obj 680 700 ==;
+#X obj 545 678 sel 1;
+#X obj 540 710 bng 15 50 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000;
+#X obj 120 330 expr if ($f1 >= 0 \, 1 \, -1 ) \; ($f1/($f2-1))-((1/($f2-1))*$f3)
+\; $f1;
+#X obj 118 448 pack f f f;
+#X obj 120 480 route 1;
 #X connect 0 0 3 0;
-#X connect 2 0 8 0;
+#X connect 2 0 50 0;
 #X connect 3 0 4 0;
 #X connect 3 0 2 0;
+#X connect 3 0 42 0;
 #X connect 4 0 3 1;
-#X connect 6 0 12 0;
-#X connect 7 0 6 1;
-#X connect 8 0 34 0;
-#X connect 8 1 7 0;
-#X connect 10 0 11 0;
-#X connect 11 0 20 0;
-#X connect 12 0 1 0;
-#X connect 13 0 1 0;
-#X connect 14 0 3 1;
+#X connect 6 0 51 2;
+#X connect 8 0 9 0;
+#X connect 9 0 16 0;
+#X connect 10 0 1 0;
+#X connect 12 0 11 0;
+#X connect 13 0 17 0;
+#X connect 13 1 0 0;
+#X connect 13 2 18 0;
+#X connect 13 2 50 1;
+#X connect 13 3 36 0;
+#X connect 14 0 23 0;
+#X connect 15 0 13 0;
+#X connect 15 1 10 0;
 #X connect 16 0 15 0;
-#X connect 17 0 21 0;
-#X connect 17 1 0 0;
-#X connect 17 2 8 1;
-#X connect 17 2 22 0;
-#X connect 17 3 14 0;
-#X connect 18 0 27 0;
-#X connect 19 0 17 0;
-#X connect 19 1 13 0;
-#X connect 20 0 19 0;
-#X connect 21 0 16 0;
+#X connect 17 0 12 0;
+#X connect 17 0 34 0;
+#X connect 18 0 19 0;
+#X connect 18 1 20 1;
+#X connect 19 0 20 0;
+#X connect 20 0 21 0;
+#X connect 21 0 30 1;
 #X connect 22 0 23 0;
-#X connect 22 1 24 1;
-#X connect 23 0 24 0;
-#X connect 24 0 25 0;
-#X connect 25 0 34 1;
-#X connect 26 0 27 0;
-#X connect 26 1 25 1;
-#X connect 27 0 19 0;
-#X connect 28 0 31 0;
-#X connect 29 0 32 0;
-#X connect 30 0 33 0;
-#X connect 30 1 28 1;
-#X connect 30 2 29 1;
-#X connect 31 0 29 0;
-#X connect 32 0 26 0;
-#X connect 33 0 28 0;
-#X connect 34 0 6 0;
-#X connect 35 0 30 0;
+#X connect 22 1 50 2;
+#X connect 23 0 15 0;
+#X connect 24 0 27 0;
+#X connect 25 0 28 0;
+#X connect 26 0 29 0;
+#X connect 26 1 24 1;
+#X connect 26 2 25 1;
+#X connect 27 0 25 0;
+#X connect 29 0 24 0;
+#X connect 31 0 26 0;
+#X connect 31 0 43 0;
+#X connect 35 0 1 0;
+#X connect 36 0 3 1;
+#X connect 37 0 23 0;
+#X connect 38 0 40 0;
+#X connect 42 0 39 0;
+#X connect 43 0 46 0;
+#X connect 43 1 45 1;
+#X connect 43 1 47 1;
+#X connect 43 1 44 1;
+#X connect 44 0 22 0;
+#X connect 45 0 47 0;
+#X connect 46 0 45 0;
+#X connect 47 0 48 0;
+#X connect 48 0 49 0;
+#X connect 48 0 44 0;
+#X connect 50 0 51 0;
+#X connect 50 1 51 1;
+#X connect 50 2 6 0;
+#X connect 51 0 52 0;
+#X connect 52 0 35 0;
 #X restore 100 650 pd scanPoints;
 #X text 49 324 tamaño sugerido: 320 x 240;
 #X text 49 348 negro = silencio / blanco = activo;
@@ -315,83 +353,62 @@
 ;
 #X text 157 11 *******************************************************
 ;
-#N canvas 480 102 450 373 subpatch 0;
-#X obj 20 32 abstracciones/linear-scan 0.0166667;
-#X obj 20 54 abstracciones/linear-scan 0.0333333;
-#X obj 20 76 abstracciones/linear-scan 0.05;
-#X obj 20 98 abstracciones/linear-scan 0.0666667;
-#X obj 20 120 abstracciones/linear-scan 0.0833333;
-#X obj 20 142 abstracciones/linear-scan 0.1;
-#X obj 20 164 abstracciones/linear-scan 0.116667;
-#X obj 20 186 abstracciones/linear-scan 0.133333;
-#X obj 20 208 abstracciones/linear-scan 0.15;
-#X obj 20 230 abstracciones/linear-scan 0.166667;
-#X obj 20 252 abstracciones/linear-scan 0.183333;
-#X obj 20 274 abstracciones/linear-scan 0.2;
-#X obj 20 296 abstracciones/linear-scan 0.216667;
-#X obj 20 318 abstracciones/linear-scan 0.233333;
-#X obj 20 340 abstracciones/linear-scan 0.25;
-#X obj 20 362 abstracciones/linear-scan 0.266667;
-#X obj 20 384 abstracciones/linear-scan 0.283333;
-#X obj 20 406 abstracciones/linear-scan 0.3;
-#X obj 20 428 abstracciones/linear-scan 0.316667;
-#X obj 20 450 abstracciones/linear-scan 0.333333;
-#X obj 20 472 abstracciones/linear-scan 0.35;
-#X obj 20 494 abstracciones/linear-scan 0.366667;
-#X obj 20 516 abstracciones/linear-scan 0.383333;
-#X obj 20 538 abstracciones/linear-scan 0.4;
-#X obj 20 560 abstracciones/linear-scan 0.416667;
-#X obj 20 582 abstracciones/linear-scan 0.433333;
-#X obj 20 604 abstracciones/linear-scan 0.45;
-#X obj 20 626 abstracciones/linear-scan 0.466667;
-#X obj 20 648 abstracciones/linear-scan 0.483333;
-#X obj 20 670 abstracciones/linear-scan 0.5;
-#X obj 20 692 abstracciones/linear-scan 0.516667;
-#X obj 20 714 abstracciones/linear-scan 0.533333;
-#X obj 20 736 abstracciones/linear-scan 0.55;
-#X obj 20 758 abstracciones/linear-scan 0.566667;
-#X obj 20 780 abstracciones/linear-scan 0.583333;
-#X obj 20 802 abstracciones/linear-scan 0.6;
-#X obj 20 824 abstracciones/linear-scan 0.616667;
-#X obj 20 846 abstracciones/linear-scan 0.633333;
-#X obj 20 868 abstracciones/linear-scan 0.65;
-#X obj 20 890 abstracciones/linear-scan 0.666667;
-#X obj 20 912 abstracciones/linear-scan 0.683333;
-#X obj 20 934 abstracciones/linear-scan 0.7;
-#X obj 20 956 abstracciones/linear-scan 0.716667;
-#X obj 20 978 abstracciones/linear-scan 0.733333;
-#X obj 20 1000 abstracciones/linear-scan 0.75;
-#X obj 20 1022 abstracciones/linear-scan 0.766667;
-#X obj 20 1044 abstracciones/linear-scan 0.783333;
-#X obj 20 1066 abstracciones/linear-scan 0.8;
-#X obj 20 1088 abstracciones/linear-scan 0.816667;
-#X obj 20 1110 abstracciones/linear-scan 0.833333;
-#X obj 20 1132 abstracciones/linear-scan 0.85;
-#X obj 20 1154 abstracciones/linear-scan 0.866667;
-#X obj 20 1176 abstracciones/linear-scan 0.883333;
-#X obj 20 1198 abstracciones/linear-scan 0.9;
-#X obj 20 1220 abstracciones/linear-scan 0.916667;
-#X obj 20 1242 abstracciones/linear-scan 0.933333;
-#X obj 20 1264 abstracciones/linear-scan 0.95;
-#X obj 20 1286 abstracciones/linear-scan 0.966667;
-#X obj 20 1308 abstracciones/linear-scan 0.983333;
-#X obj 20 1330 abstracciones/linear-scan 1;
+#N canvas 705 72 450 398 subpatch 0;
+#X obj 20 10 abstracciones/linear-scan -0.0190439;
+#X obj 20 32 abstracciones/linear-scan 0.00368339;
+#X obj 20 54 abstracciones/linear-scan 0.0264107;
+#X obj 20 76 abstracciones/linear-scan 0.0491379;
+#X obj 20 98 abstracciones/linear-scan 0.0718652;
+#X obj 20 120 abstracciones/linear-scan 0.0945925;
+#X obj 20 142 abstracciones/linear-scan 0.11732;
+#X obj 20 164 abstracciones/linear-scan 0.140047;
+#X obj 20 186 abstracciones/linear-scan 0.162774;
+#X obj 20 208 abstracciones/linear-scan 0.185502;
+#X obj 20 230 abstracciones/linear-scan 0.208229;
+#X obj 20 252 abstracciones/linear-scan 0.230956;
+#X obj 20 274 abstracciones/linear-scan 0.253683;
+#X obj 20 296 abstracciones/linear-scan 0.276411;
+#X obj 20 318 abstracciones/linear-scan 0.299138;
+#X obj 20 340 abstracciones/linear-scan 0.321865;
+#X obj 20 362 abstracciones/linear-scan 0.344592;
+#X obj 20 384 abstracciones/linear-scan 0.36732;
+#X obj 20 406 abstracciones/linear-scan 0.390047;
+#X obj 20 428 abstracciones/linear-scan 0.412774;
+#X obj 20 450 abstracciones/linear-scan 0.435502;
+#X obj 20 472 abstracciones/linear-scan 0.458229;
+#X obj 20 494 abstracciones/linear-scan 0.480956;
+#X obj 20 516 abstracciones/linear-scan 0.503683;
+#X obj 20 538 abstracciones/linear-scan 0.526411;
+#X obj 20 560 abstracciones/linear-scan 0.549138;
+#X obj 20 582 abstracciones/linear-scan 0.571865;
+#X obj 20 604 abstracciones/linear-scan 0.594593;
+#X obj 20 626 abstracciones/linear-scan 0.61732;
+#X obj 20 648 abstracciones/linear-scan 0.640047;
+#X obj 20 670 abstracciones/linear-scan 0.662774;
+#X obj 20 692 abstracciones/linear-scan 0.685502;
+#X obj 20 714 abstracciones/linear-scan 0.708229;
+#X obj 20 736 abstracciones/linear-scan 0.730956;
+#X obj 20 758 abstracciones/linear-scan 0.753683;
+#X obj 20 780 abstracciones/linear-scan 0.776411;
+#X obj 20 802 abstracciones/linear-scan 0.799138;
+#X obj 20 824 abstracciones/linear-scan 0.821865;
+#X obj 20 846 abstracciones/linear-scan 0.844593;
+#X obj 20 868 abstracciones/linear-scan 0.86732;
+#X obj 20 890 abstracciones/linear-scan 0.890047;
+#X obj 20 912 abstracciones/linear-scan 0.912774;
+#X obj 20 934 abstracciones/linear-scan 0.935502;
+#X obj 20 956 abstracciones/linear-scan 0.958229;
+#X obj 20 978 abstracciones/linear-scan 0.980956;
 #X restore 110 680 pd subpatch;
 #X text 157 203 *******************************************************
 ;
-#N canvas 653 40 494 608 descripcion_de_funcionamiento 0;
+#N canvas 316 96 494 608 descripcion_de_funcionamiento 0;
 #X text 13 23 Análisis de información de color en una imagen (input)
 y simultanea generación de señal de audio (output) mediante sintesis
 aditiva (banco de osciladores).;
 #X text 14 92 La imagen (input) es considerada como una grilla de dos
 dimensiones \, siendo el horizontal asignado al tiempo y el vertical
 a la altura del sonido a generar.;
-#X text 14 152 Para el análisis de la imagen \, se evalua cada posicion
-del eje vertical \, o "filas" \, según cada valor del eje horizontal
-\, o "columnas". Una vez definida una posición en el ejer horizontal
-para la lectura de la información \, se evalúa si hay información
-de color en cada una de las posiciones del eje vertical. Esa cantidad
-de puntos de analisis está definida por defecto en 120 filas.;
 #X text 14 274 Cada fila \, tiene asociada un oscilador cosenoidal
 \, de manera que al encontrar información de color se activa el oscilador
 especifico de cada fila.;
@@ -410,6 +427,12 @@ La lactura automátiza es cíclica \, de izquierda a derecha. De manera
 que luego de recorrer la totalidad de la imagen repite el recorrido
 saltando de la última posición (extremo derecho) a la primera (extremo
 ixquierdo);
+#X text 14 152 Para el análisis de la imagen \, se evalua cada posicion
+del eje vertical \, o "filas" \, según cada valor del eje horizontal
+\, o "columnas". Una vez definida una posición en el ejer horizontal
+para la lectura de la información \, se evalúa si hay información
+de color en cada una de las posiciones del eje vertical. Esa cantidad
+de puntos de analisis está definida en el "nro de scan points".;
 #X restore 237 174 pd descripcion_de_funcionamiento;
 #X text 426 257 Rango de Frecuencias;
 #X text 452 302 Hz Frec Max (limite sup);
@@ -448,20 +471,19 @@ sección 5.9 Image Scanner. Disponible en:;
 #X obj 431 624 bng 15 250 50 0 empty GUIrecAudioStop empty 17 7 0 10
 #fcfcfc #000000 #000000;
 #X text 421 599 STOP;
-#X floatatom 550 626 5 0 0 0 - - -, f 5;
-#X obj 500 610 hsl 128 15 0 1 0 0 gain-individual GUI-individual-gain
-empty -2 -8 0 10 #fcfcfc #000000 #000000 550 1;
-#X text 494 588 nivel amp individual;
+#X floatatom 556 626 5 0 0 0 - - -, f 5;
+#X obj 506 610 hsl 128 15 0 1 0 0 gain-individual GUI-individual-gain
+empty -2 -8 0 10 #fcfcfc #000000 #000000 3250 1;
+#X text 500 588 nivel amp individual;
 #X msg 479 459 10;
-#X text 20 590 nro de scan points;
-#X msg 63 619 30;
-#X msg 123 619 60;
-#X msg 30 620 15;
-#X obj 190 610 vsl 15 30 0 1 0 0 empty empty empty 0 -9 0 10 #fcfcfc
-#000000 #000000 0 1;
-#X text 170 580 offset;
+#X text 37 573 nro de scan points;
+#X msg 63 595 30;
+#X msg 30 596 15;
+#X obj 188 595 vsl 15 30 0.9 0 0 0 GUI-offset empty empty 0 -9 0 10
+#fcfcfc #000000 #000000 200 1;
+#X text 173 572 offset;
 #X obj 543 510 s GUIinterp;
-#X msg 153 619 90;
+#X msg 126 595 90;
 #X msg 512 459 100;
 #X floatatom 543 486 5 0 0 0 - - -, f 5;
 #N canvas 729 418 491 566 grabarVideo 0;
@@ -530,33 +552,54 @@ empty -2 -8 0 10 #fcfcfc #000000 #000000 550 1;
 #X restore 350 650 pd grabarAudio;
 #X obj 350 680 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
 #000000 0 1;
-#X msg 93 619 45;
+#X msg 93 595 45;
+#X text 480 395 Tiempo de Interpolacion;
+#X floatatom 100 626 5 0 0 0 - - -, f 5;
+#X obj 30 550 loadbang;
+#X obj 564 683 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X text 480 660 frec de oscilador en consola;
+#X msg 606 459 1500;
+#N canvas 0 0 450 300 printFrec 0;
+#X obj 130 40 inlet;
+#X obj 130 69 t b b;
+#X obj 130 168 s linear-scan-printFrec;
+#X msg 162 100 valores de frecuencias de cada oscilador:;
+#X obj 162 129 print;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 1 1 3 0;
+#X connect 3 0 4 0;
+#X restore 530 698 pd printFrec;
 #X connect 3 0 2 0;
 #X connect 4 0 5 0;
 #X connect 4 0 5 1;
-#X connect 4 0 63 0;
+#X connect 4 0 62 0;
 #X connect 7 0 6 0;
 #X connect 9 0 8 0;
 #X connect 11 0 10 4;
 #X connect 12 0 10 3;
 #X connect 14 0 10 2;
 #X connect 18 0 19 0;
-#X connect 25 0 60 0;
-#X connect 26 0 60 0;
+#X connect 25 0 59 0;
+#X connect 26 0 59 0;
 #X connect 27 0 25 0;
 #X connect 37 0 17 0;
 #X connect 41 0 10 1;
-#X connect 44 0 63 1;
-#X connect 45 0 63 2;
+#X connect 44 0 62 1;
+#X connect 45 0 62 2;
 #X connect 48 0 47 0;
-#X connect 50 0 60 0;
-#X connect 52 0 21 0;
-#X connect 53 0 21 0;
-#X connect 54 0 21 0;
-#X connect 55 0 21 1;
-#X connect 58 0 21 0;
-#X connect 59 0 60 0;
-#X connect 60 0 57 0;
-#X connect 62 0 10 0;
-#X connect 64 0 61 0;
-#X connect 65 0 21 0;
+#X connect 50 0 59 0;
+#X connect 52 0 66 0;
+#X connect 53 0 66 0;
+#X connect 54 0 21 1;
+#X connect 57 0 66 0;
+#X connect 58 0 59 0;
+#X connect 59 0 56 0;
+#X connect 61 0 10 0;
+#X connect 63 0 60 0;
+#X connect 64 0 66 0;
+#X connect 66 0 21 0;
+#X connect 67 0 53 0;
+#X connect 68 0 71 0;
+#X connect 70 0 59 0;
